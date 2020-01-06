@@ -58,5 +58,74 @@ public interface ManageService {
      * @return
      */
     BaseAttrInfo getBaseAttrInfo(String attrId);
+
+    /**
+     * 通过三级分类Id 查询
+     * @param catalog3Id
+     * @return
+     */
+    List<SpuInfo> getSpuInfoList(String catalog3Id);
+
+    /**
+     * 查询所有的销售属性
+     * @return
+     */
+    List<BaseSaleAttr> getBaseSaleAttrList();
+
+    /**
+     * 保存spuInfo
+     * @param spuInfo
+     */
+    void saveSpuInfo(SpuInfo spuInfo);
+
+    /**
+     * 根据spuId 查询列表
+     * @param spuImage
+     * @return
+     */
+    List<SpuImage> getSpuImageList(SpuImage spuImage);
+
+
+    /**
+     * 通过三级分类id查询
+     * @param catalog3Id
+     * @return
+     */
+    List<BaseAttrInfo> getAttrInfoList(String catalog3Id);
+
+    /**
+     * 通过spuid来查询销售属性集合
+     * @param spuId
+     * @return
+     */
+    List<SpuSaleAttr> spuSaleAttrList(String spuId);
+
+    /**
+     * 保存商品信息
+     * @param skuInfo
+     */
+    void saveSkuInfo(SkuInfo skuInfo);
+
+
+    /**
+     *根据skuid查询skuinfo
+     * @param skuId
+     * @return
+     */
+    SkuInfo getSkuInfo(String skuId);
+
+    /**
+     * 通过skuId ，spuId 查询销售属性集合
+     * @param skuInfo
+     * @return
+     */
+    List<SpuSaleAttr> getSpuSaleAttrListCheckBySku(SkuInfo skuInfo);
+
+    /**
+     * 根据spuId 查询sku与销售属性值的集合
+     * @param spuId
+     * @return
+     */
+    List<SkuSaleAttrValue> getSkuSaleAttrValueListBySpu(String spuId);
 }
 
