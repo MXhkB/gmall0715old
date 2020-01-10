@@ -85,20 +85,19 @@ public interface ManageService {
      */
     List<SpuImage> getSpuImageList(SpuImage spuImage);
 
-
     /**
-     * 通过三级分类id查询
+     * 通过三级分类Id查询
      * @param catalog3Id
      * @return
      */
     List<BaseAttrInfo> getAttrInfoList(String catalog3Id);
 
     /**
-     * 通过spuid来查询销售属性集合
+     * 通过spuId 查询销售属性集合
      * @param spuId
      * @return
      */
-    List<SpuSaleAttr> spuSaleAttrList(String spuId);
+    List<SpuSaleAttr> getSpuSaleAttrList(String spuId);
 
     /**
      * 保存商品信息
@@ -106,9 +105,8 @@ public interface ManageService {
      */
     void saveSkuInfo(SkuInfo skuInfo);
 
-
     /**
-     *根据skuid查询skuinfo
+     * 根据skuId 查询skuInfo
      * @param skuId
      * @return
      */
@@ -127,5 +125,6 @@ public interface ManageService {
      * @return
      */
     List<SkuSaleAttrValue> getSkuSaleAttrValueListBySpu(String spuId);
+
 }
 

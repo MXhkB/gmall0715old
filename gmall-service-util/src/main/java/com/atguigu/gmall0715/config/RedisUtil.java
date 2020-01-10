@@ -6,18 +6,16 @@ import redis.clients.jedis.JedisPoolConfig;
 
 public class RedisUtil {
     /*
-     0. 创建JedisPool
-     1. 获取Jedis
-      */
-    // 创建JedisPool
+    1.  先创建一个连接池的工厂
+    2.  从工厂中获取连接Jedis
+     */
     private JedisPool jedisPool;
 
-    // String host = "192.168.67.220";
-    // 初始化连接池
-    public void initJedisPool(String host,int post,int timeOut){
-        //初始化配置参数
+    // 初始化连接池工厂
+    public void initJedisPool(String host,int port,int timeOut){
+        // 初始化参数配置
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
-        //如果需要密码，则需要修改redis.conf配置文件。
+        // 如果要密码，则需要修改redis.conf 配置文件。
         // 设置最大连接数
         jedisPoolConfig.setMaxTotal(200);
 
@@ -32,12 +30,15 @@ public class RedisUtil {
 
         // 表示获取到连接的时候，自检一下当前连接是否可以使用！
         jedisPoolConfig.setTestOnBorrow(true);
-        jedisPool = new JedisPool(jedisPoolConfig, host, post, timeOut);
+
+        jedisPool = new JedisPool(jedisPoolConfig,host,port,timeOut);
     }
-    //获取jedis方法
+
+    // 获取Jedis 方法
     public Jedis getJedis(){
         Jedis jedis = jedisPool.getResource();
 
         return jedis;
     }
+
 }
