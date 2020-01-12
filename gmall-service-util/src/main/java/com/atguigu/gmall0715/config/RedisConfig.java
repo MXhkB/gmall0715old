@@ -40,10 +40,4 @@ public class RedisConfig {
         return redisUtil;
     }
 
-
-
-
-
-
-
 }

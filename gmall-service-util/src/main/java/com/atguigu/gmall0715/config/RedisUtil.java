@@ -1,5 +1,4 @@
 package com.atguigu.gmall0715.config;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;

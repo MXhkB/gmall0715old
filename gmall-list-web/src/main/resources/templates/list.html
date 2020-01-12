@@ -67,14 +67,20 @@
 <div class="GM_ipone">
     <div class="GM_ipone_bar">
         <div class="GM_ipone_one a">
-            筛选条件	    
+            筛选条件
         </div>
-		<i><img src="/image/right-@1x.png" alt=""></i>
-        <span  >&quot;小米&quot;</span>
-		<a class="select-attr"     href="#"     > 2G<b> ✖ </b>
-		</a>
-		 <a class="select-attr"   href="#"      > 屏幕尺寸:5.1-5.5英寸<b> ✖ </b>
-		</a>
+        <i><img src="/image/right-@1x.png" alt=""></i>
+        <span th:if="${keyword}!=null" th:text="'&quot;'+${keyword}+'&quot;'" >&quot;小米&quot;</span>
+        <!--href="#"
+            // 最新的参数列表如何获取到！ 将最新的url 参数条件，赋值给baseAttrValue的一个属性urlParam   baseAttrValue.setUrlParam(urlParam);
+            原始 ：http://list.gmall.com/list.html?keyword=小米手机&valueId=120&valueId=160
+            第一次点击：http://list.gmall.com/list.html?keyword=小米手机&valueId=120
+            第二次点击：http://list.gmall.com/list.html?keyword=小米手机
+
+            baseAttrValue.setUrlParam(urlParam);
+        -->
+        <a class="select-attr" th:href="'list.html?'+${baseAttrValue.urlParam}" th:text="${baseAttrValue.valueName}+'✖'"  th:each="baseAttrValue: ${baseAttrValueArrayList}"  > 2G<b> ✖ </b>
+        </a>
 
     </div>
 </div>
@@ -88,28 +94,25 @@
                 <h3><em>商品筛选</em></h3>
 
             </div>
-            <div class="GM_nav_logo">
+            <div class="GM_nav_logo" >
 
-                <div class="GM_pre"  >
+                <div class="GM_pre" th:each="baseAttrInfo:${baseAttrInfoList}" >
                     <div class="sl_key">
-                        <span  >属性1111：</span>
+                        <span th:text="${baseAttrInfo.attrName}" >属性1111：</span>
                     </div>
                     <div class="sl_value">
                         <ul>
-                            <li  ><a  href="#"  >属性值111</a></li>
-							<li  ><a  href="#"  >属性值222</a></li>
-						  </ul>
-                    </div>
-                </div>
-				 <div class="GM_pre"  >
-                    <div class="sl_key">
-                        <span  >属性222：</span>
-                    </div>
-                    <div class="sl_value">
-                        <ul>
-                             <li  ><a href="#"   >属性值333</a></li>
-							<li  ><a href="#"  >属性值444</a></li>
-							</ul>
+                            <li  th:each="attrValue:${baseAttrInfo.attrValueList}">
+                                <!--重新发起请求
+                                   未点击之前： href=http://list.gmall.com/list.html?catalog3Id=61
+                                   点击一下之后： http://list.gmall.com/list.html?catalog3Id=61&valueId=82
+                                   再点击一次：http://list.gmall.com/list.html?catalog3Id=61&valueId=82&valueId=81
+                                   urlParam=catalog3Id=61
+                                  href="#" href="http://list.gmall.com/list.html?${urlParam}+"&valueId="attrValue.id"
+                               -->
+                                <a  th:href="'list.html?'+${urlParam}+'&valueId='+${attrValue.id}" th:text="${attrValue.valueName}" >属性值111</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
